@@ -36,5 +36,14 @@ namespace MyTasks.ViewModel
             }
         }
 
+
+        [RelayCommand]
+        async Task Tap(string task)
+        {
+            await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?Text= { task }");
+        }
+
+
+
     }
 }
