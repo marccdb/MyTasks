@@ -3,39 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyTasks.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid RowDefinitions="100, Auto, *" ColumnDefinitions=".75*,.25*" Padding="10" ColumnSpacing="15" RowSpacing="15">
+        <Image Grid.ColumnSpan="2" Source="logo.png"></Image>
+        <Entry Grid.Row="1" Placeholder="Enter a new task:"></Entry>
+        <Button Grid.Column="1" Grid.Row="1" Text="Add"></Button>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="2">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Clean my room</x:String>
+                    <x:String>Go to the gym</x:String>
+                    <x:String>Wash my car</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+        
+    </Grid>
 
 </ContentPage>
