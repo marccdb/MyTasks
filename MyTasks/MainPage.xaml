@@ -19,7 +19,12 @@
                 <DataTemplate x:DataType="{x:Type x:String}">
                     <SwipeView>
                         <SwipeView.LeftItems>
-                            <SwipeItem Text="Delete" BackgroundColor="IndianRed"/>
+                            <SwipeItems>
+                            <SwipeItem Text="Delete" 
+                                       BackgroundColor="IndianRed"
+                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel }}, Path=DeleteCommand}"
+                                       CommandParameter="{Binding .}"/>
+                            </SwipeItems>
                         </SwipeView.LeftItems>
                         <Grid Padding="2">
                             <Frame>

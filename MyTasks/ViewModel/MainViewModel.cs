@@ -26,5 +26,15 @@ namespace MyTasks.ViewModel
             NewTask = string.Empty;
         }
 
+
+        [RelayCommand]
+        void Delete(string task)
+        {
+            if (Items.Contains(task))
+            {
+                Items.Remove(task);
+            }
+        }
+
     }
 }
