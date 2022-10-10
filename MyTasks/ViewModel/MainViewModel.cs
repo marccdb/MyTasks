@@ -6,9 +6,12 @@ namespace MyTasks.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        public MainViewModel()
+        IConnectivity connectivity;
+
+        public MainViewModel(IConnectivity connectivity)
         {
             Items = new ObservableCollection<string>();
+            this.connectivity = connectivity;
         }
 
         [ObservableProperty]
@@ -18,9 +21,15 @@ namespace MyTasks.ViewModel
         string newTask;
 
         [RelayCommand]
-        void AddTask()
+        async Task AddTask()
         {
             if (string.IsNullOrWhiteSpace(NewTask)) return;
+
+            if (connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Shell.Current.DisplayAlert("There's an issue!", "Internet is required to save your list", "OK");
+                return;
+            }
 
             Items.Add(NewTask);
             NewTask = string.Empty;
